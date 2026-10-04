@@ -6,7 +6,8 @@ import { notifyNewLead } from "./leadNotify.service";
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
-const RATE_MAX = 5;
+// Cuenta también envíos inválidos: 10 deja margen para corregir errores de tipeo.
+const RATE_MAX = 10;
 
 // En memoria: en Vercel cada instancia lleva su propio conteo. Basta para
 // frenar a un bot torpe; no es un límite exacto.
