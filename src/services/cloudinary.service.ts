@@ -59,3 +59,26 @@ export async function deleteImage(publicId: string): Promise<void> {
   ensureConfig();
   await cloudinary.uploader.destroy(publicId);
 }
+
+/**
+ * Sube con un public_id fijo. Así una importación repetida no duplica
+ * archivos: si ya existe, Cloudinary devuelve el recurso existente.
+ */
+export async function uploadWithPublicId(
+  source: string,
+  publicId: string,
+): Promise<{ url: string; publicId: string; width: number; height: number }> {
+  ensureConfig();
+  const result = await cloudinary.uploader.upload(source, {
+    public_id: publicId,
+    resource_type: "image",
+    overwrite: false,
+    unique_filename: false,
+  });
+  return {
+    url: result.secure_url,
+    publicId: result.public_id,
+    width: result.width,
+    height: result.height,
+  };
+}
