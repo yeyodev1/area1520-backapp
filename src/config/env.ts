@@ -42,4 +42,6 @@ export const env = {
   CLOUDINARY_API_KEY: optional("CLOUDINARY_API_KEY", ""),
   CLOUDINARY_API_SECRET: optional("CLOUDINARY_API_SECRET", ""),
   CRON_SECRET: optional("CRON_SECRET", ""),
+  // A dónde llega el aviso de un nuevo interesado del "primer día gratis".
+  LEADS_NOTIFY_EMAIL: optional("LEADS_NOTIFY_EMAIL", ""),
 } as const;
